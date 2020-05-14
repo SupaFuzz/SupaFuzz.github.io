@@ -1,0 +1,329 @@
+/*
+	palette:
+(((14.495992/105.83341) * ((window.innerWidth/2)*Math.LN2)) - ((44.770714/418) * ((window.innerWidth/2)*Math.LN2)))/2
+		vanta:			 rgb(2, 6, 9)		#020609
+		damn near black: rgb(5, 15, 20)		#050F14
+		darkest blue:	 rgb(12 ,33, 46)	#0C212E
+		dark blue:		 rgb(17, 47, 65)	#112F41
+		bright blue:	 rgb(6, 133, 135)	#068587
+		brightest blue:	 rgb(79, 185, 159)	#4FB99F
+		yellow:			 rgb(242, 177, 52)	#F2B134
+		orange:			 rgb(237, 85, 59)	#ED553B
+*/
+
+/* this disables scrolling on the body */
+html, body {
+  position: fixed;
+  overflow: hidden;
+  height:   100%;
+  width:    100%;
+}
+
+
+body {
+	background-color:			rgb(5, 15, 20);
+	font-size:					2.5em;
+	font-family:				-apple-system, Helvetica, Arial, sans-serif;
+	margin:						0;
+	padding:					0;
+	text-align:					center;
+	color:						#4FB99F;
+}
+
+.hidden {
+    display:					none;
+}
+
+/* header menu style */
+.noiceCoreUIHeaderMenu {
+	transition:					height .75s ease-in-out;
+}
+.menuContainer {
+	transition:					background 1s ease-in-out;
+	max-width: 					85%;
+	border: 					3px solid rgb(6, 133, 135);
+	border-bottom-left-radius:  15px;
+	border-bottom-right-radius: 15px;
+}
+.menuClosed .menuContainer {
+	background:					rgba(17, 47, 65,.3);
+}
+.menuOpen .menuContainer {
+	background:					rgba(17, 47, 65,.8);
+}
+.menuHandle {
+	cursor:						pointer;
+}
+.menuHandle:hover .menuHandleIcon path {
+	fill-opacity:				.95;
+}
+.menuHandle:hover .menuHandleTitle {
+	color:						rgba(6, 133, 135, 1);
+}
+.menuHandleTitle {
+	font-size: 					.65em;
+	margin:						.25em 0 0 .5em;
+	color:						rgba(6, 133, 135, .55);
+}
+.menuHandleIcon {
+	margin-right: 				.25em;
+}
+.menuHandleIcon path {
+	fill:						rgb(237, 85, 59);
+	fill-opacity:				.45;
+}
+
+
+/* the graphics UI */
+.amyGraphicsUIScreen {
+	/* things */
+}
+.amyGraphicsUIScreen g.bkndGrid{
+	opacity:					.03;
+}
+
+/*path.blob {
+	stroke:						rgb(242, 177, 52);
+	stroke-width:				1;
+	fill-opacity:				0;
+}*/
+
+/* the graphics UI control panel */
+.ctrlPanel {
+	font-size:					.75em;
+	border: 					2px solid rgb(6, 133, 135);
+	border-radius: 				.35em;
+	background: 				rgba(17, 47, 65,.3);
+
+}
+.ctrlPanelBody {
+	display:					grid;
+	grid:						1fr;
+	text-align:					center;
+	/*margin:						.5em;*/
+	overflow:					hidden;
+}
+.activeDrag {
+	background:					rgba(17, 47, 65,.8);
+}
+.ctrlPanelHandle {
+	font-size: 					.45em;
+	border-bottom:				1px solid rgb(6, 133, 135);
+	width:						100%;
+	overflow:					hidden;
+	text-align:					center;
+	cursor:						grabbing;
+	background-color: 			rgba(2, 6, 9, .8);
+}
+.ctrlPanelHandle h3 {
+	margin: 					.5em 1em .5em 1em;
+	padding: 					0;
+	font-weight: 				normal;
+}
+.ctrlPanelBody button {
+	margin: 					.25em 1em .25em 1em;
+	border:						1px solid rgba(6, 133, 135, .9);
+	background:					rgba(6, 133, 135, .0);
+	color:						rgba(6, 133, 135, .5);
+}
+.ctrlPanelBody button:hover{
+	background:					radial-gradient(rgba(2, 6, 9, .8), rgba(6, 133, 135, .0));
+	color:						rgba(6, 133, 135, 1);
+	border:						1px solid rgba(6, 133, 135, 1);
+}
+
+
+/* the code UI */
+div.btnBar {
+	display:					grid;
+	grid:						1fr;
+	text-align:					left;
+	margin-right:				2em;
+}
+.ncuFormElement {
+	/*border:						2px dotted rgba(237, 85, 59, .6);*/
+	padding:					1em;
+    user-select: 				none;
+    -webkit-user-select:        none;
+}
+.ncuFormElement label, .ncuFormElement select {
+	display:					inline-block;
+	vertical-align: 			middle;
+}
+.ncuFormElement label {
+	font-size:					.5em;
+	margin-right:				.5em;
+}
+.ncuFormElement select, .ncuFormElement input, .ncuFormElement textarea {
+	font-size:					.5em;
+	border-radius:				.5em;
+	padding:					.5em;
+	font-weight:				bold;
+	background:					linear-gradient(rgba(240, 240, 240, .1),rgba(240, 240, 240, .0),rgba(240, 240, 240, .0),rgba(240, 240, 240, .0),rgba(240, 240, 240, .1));
+	color:						rgb(6, 133, 135);
+	border:						1px solid rgb(6, 133, 135);
+	-moz-appearance: 			none;
+	-webkit-appearance: 		none;
+	appearance: 				none;
+}
+.ncuFormElement input[type=checkbox] {
+	width:						2em;
+	height:						2em;
+}
+.ncuFormElement input[type=checkbox]::before {
+	content: 					"✔";
+	visibility:					hidden;
+}
+.ncuFormElement input[type=checkbox]:checked::before {
+	visibility:					visible;
+}
+.ncuFormElement select:disabled, .ncuFormElement input:disabled, .ncuFormElement button:disabled{
+	color:						rgba(240, 240, 240, .2);
+	background-color:			rgba(240, 240, 240, .1);
+}
+.ncuFormElement select.ncuFormElementDefaultSelect {
+	font-style:					italic;
+	color:						rgba(6, 133, 135,.6);
+}
+
+.ctrlPanelBody {
+	/*background: 				radial-gradient(rgba(240, 240, 240, 1),rgba(240, 240, 240, .5));*/
+	padding:					.25em;
+	/*border-radius:				.66em;
+	border:						1px solid rgb(12 ,33, 46);*/
+}
+.amyCodeUIScreen .ctrlPanelBody button {
+	background: 				radial-gradient(rgba(240, 240, 240, .7),rgba(240, 240, 240, .5));
+	background-color:			rgb(12 ,33, 46);
+	color:						rgb(12 ,33, 46);
+	width:						50%;
+	border:						1px solid rgb(12 ,33, 46);
+}
+.ncufeDefaultSelection {
+	font-style: italic;
+	opacity:	.5;
+}
+pre.log{
+	text-align:					left;
+	border-radius:				.66em;
+	border:						1px solid rgb(6, 133, 135);
+	font-size:					.35em;
+	padding:					.5em;
+	overflow-y: 				auto;
+	height: 					150px;
+}
+
+
+.ncuFormElement table {
+	font-size:					.35em;
+  	/*border-collapse:			separate;*/
+	display: 					block;
+	overflow-y: 				auto;
+	overflow-x:					hidden;
+	border: 2px solid 			rgb(6, 133, 135);
+	border-radius: 				.5em;
+}
+
+.ncuFormElement td {
+	/*border:						1px solid rgb(5, 15, 20);*/
+	text-align:					left;
+	padding:					.25em;
+	overflow:hidden;
+}
+.ncuFormElement th[data-selected='true']{
+    background-color:		    rgb(17, 67, 113);
+	border-bottom:              2px solid rgb(79, 185, 159);
+	box-shadow: 				none;
+}
+.ncuFormElement th {
+    border-bottom:              2px solid rgb(6, 133, 135);
+    background:					linear-gradient(rgba(5, 15, 20, .8),rgba(5, 15, 20, .4),rgba(5, 15, 20, .2),rgba(5, 15, 20, .05),rgba(5, 15, 20, .25));
+    background-color:		    rgb(22 ,60, 84);
+	padding:					1em 2em 1em 2em;
+	cursor:						default;
+	box-shadow: 				3px 3px 5px rgba(2, 6, 9, .25);
+	overflow: hidden;
+}
+.ncuFormElement th[data-sort='ascending']::after{
+	content:	'\202F\2191';
+}
+.ncuFormElement th[data-sort='descending']::after{
+	content:	'\202F\2193';
+}
+
+/* neat trick but no longer needed
+.ncuFormElement thead tr th:nth-child(1n+2){
+	border-left:				1px solid rgb(5, 15, 20);
+}
+*/
+
+.ncuFormElement tbody tr:hover {
+	background-color: 			rgba(242, 177, 52, .4);
+}
+.ncuFormElement tbody tr:nth-child(even):hover{
+	background-color: 			rgba(242, 177, 52, .4);
+}
+.ncuFormElement tbody tr:nth-child(even){
+	background-color:			rgba(6, 133, 135, .4);
+}
+.ncuFormElement tbody tr[data-selected='true'] {
+	background-color: 			rgba(242, 177, 52, 1);
+	color:						rgba(5, 15, 20, .75);
+}
+.ncuFormElement tbody tr {
+	background-color:			rgba(6, 133, 135, .8);
+}
+
+.ncfuTableControlPanel button {
+	font-size:					.3em;
+	border:						1px solid rgba(6, 133, 135, .7);
+	color:						rgba(6, 133, 135, .7);
+	background-color: 			rgba(5, 15, 20, 1);
+	margin:						.25em;
+	padding:					.25em 0 .25em 0;
+}
+.ncfuTableControlPanel button:hover {
+	border:						1px solid rgba(6, 133, 135, 1);
+	background-color:			rgba(6, 133, 135, .7);
+	color:						rgba(5, 15, 20, .75);
+}
+.ncfuTableControlPanel button:focus {
+	outline: 					none;
+	background-color:			rgba(5, 15, 20, .75);
+	color:						rgba(6, 133, 135, .7);
+	border:						1px solid rgba(6, 133, 135, .7);
+}
+.ncfuTableMessage {
+	font-size: 					.3em;
+}
+.ncfuTableHeaderDragAvatar {
+    font-size:                  .5em;
+    border:                     2px solid rgb(79, 185, 159);
+    border-radius:              .5em;
+}
+
+
+/* global defaults */
+button {
+	margin:						1em;
+	padding:					.25em .5em .25em .5em;
+	font-size:					.5em;
+	border-radius: 				.45em;
+	color:						rgba(237, 85, 59, .4);
+	background:					rgba(240, 240, 240, 0);
+	border:						2px solid rgba(237, 85, 59, .6);
+}
+button:hover {
+	color:						rgba(237, 85, 59, 1);
+	border:						2px solid rgba(237, 85, 59, 1);
+}
+/*
+button:active {
+	background:					rgba(237, 85, 59, .75);
+	border:						2px solid rgba(237, 85, 59, 1);
+	color:						rgba(12 ,33, 46, .9);
+}
+*/
+button:focus {
+	outline: 					none;
+}

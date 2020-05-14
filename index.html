@@ -1,0 +1,86 @@
+<!DOCTYPE html>
+
+<!-- LOOSE END: insert manifest declaration into html tag once we're ready for it -->
+<html lang="en" >
+   <head>
+       <!--
+           Travel Agent C Band Website
+           Amy Hicox <amy@hicox.com>        3/4/2020
+
+       -->
+
+       <!-- make it look like an app -->
+       <meta charset="utf-8" />
+       <meta name="apple-mobile-web-app-capable" content="yes">
+       <meta name="viewport" content="user-scalable=no" />
+
+       <!-- library includes -->
+       <script src="./lib/noiceCore.js"></script>
+       <script src="./lib/noiceCoreUI.js"></script>
+       <script src="./lib/perlin.js"></script>
+       <script src="./lib/amyRadialPolygonPath.js"></script>
+
+       <!-- 'the site' as it were -->
+       <script src="./main.js"></script>
+
+       <!-- don't make Tim Gunn "question your taste level" mmmm'kay? -->
+       <link rel="stylesheet" type="text/css" href="./cta.css">
+
+       <!-- start it up -->
+       <script type="text/javascript">
+
+
+        //document.addEventListener('gesturechange', function(e){ e.preventDefault});
+        document.addEventListener("DOMContentLoaded", function(evt){
+
+
+            // define some UIs
+            let UIs = {
+                main:   new ctaMainScreen({name: 'main'})
+            }
+
+
+            // make a screenHolder to keep all the UIs in
+            let screenHolder = new noiceCoreUIScreenHolder({
+                UIList:     UIs
+            }).append(document.body);
+
+
+            // make some buttons to go in the header menu and switch betwixt the UIs
+            let btnList = [];
+            Object.keys(UIs).forEach(function(ui){ btnList.push(`<button id="btn_${ui}">${ui}</button>`); });
+
+
+            // make a header menu to hold the buttons
+            let hdrMenu = new noiceCoreUIHeaderMenu({
+                menuHandleTitle:    'Travel Agent C',
+                menuContent:        btnList.join(""),
+                renderCallback:     function(self){
+                    // render stuffs
+                },
+                menuContentCallback: function(menuContentDOMElement){
+                    // attach hooks to the button to call switchUI
+                    Object.keys(UIs).forEach(function(ui){
+                        menuContentDOMElement.querySelector(`#btn_${ui}`).addEventListener('click', function(evt){
+                            screenHolder.switchUI(ui).then(function(){ hdrMenu.close(); });
+                        });
+                    });
+                },
+                openCallback:       async function(self){
+                    // do something after the menu opens? I dunno ...
+                },
+                maxHeight:          '120px',
+                minHeight:          '50px'
+            });
+
+            // load the main screen into view
+            screenHolder.switchUI('main');
+
+        });
+
+       </script>
+   </head>
+<body>
+    <!-- this space intentionally left blank -->
+</body>
+</html>
