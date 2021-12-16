@@ -477,6 +477,7 @@ setup(){
     });
     */
     that.spawnPaths();
+    setTimeout(function(){ that.spawnPaths(); }, 10000);
 }
 
 /*
