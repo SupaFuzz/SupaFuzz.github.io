@@ -15,7 +15,7 @@ constructor(args, defaults, callback){
         noiceObjectCore.mergeClassDefaults({
             _version:       1,
             _className:     'ctaMainScreen',
-            recursion:      200,
+            recursion:      250,
             firstFocus:     true,
         }, defaults),
         callback
