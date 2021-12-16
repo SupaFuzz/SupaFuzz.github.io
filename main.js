@@ -47,7 +47,7 @@ get html(){
                   <animate attributeName="fx" from="3" to="1.05" dur="20s" repeatCount="1" />
                 </radialGradient>
 
-                <!-- Filter declaration -->
+                <!-- Filter declaration
                 <filter id="MyFilter" filterUnits="userSpaceOnUse"
                       x="-20" y="-20"
                       width="${((window.innerWidth/2)*Math.LN2)+20}"
@@ -67,6 +67,7 @@ get html(){
                         <animate attributeName="stdDeviation" from="8" to="0" dur="10s" repeatCount="1" />
                     </feGaussianBlur>
                 </filter>
+                 -->
             </defs>
 
             <!-- the grid
@@ -460,8 +461,8 @@ setup(){
 
     // animate the album cover reveal
     let that = this;
+    /*
     this.svgDOMElement.querySelector('#MyFilter animate').addEventListener('endEvent', function(e){
-        /* tmp disable title sequence. working on visualizer */
         that.albumName.insertAdjacentHTML('afterbegin', `<animate id="anOp" attributeName="opacity" from="0" to="1" dur="10s" repeatCount="1" />`);
         that.svgDOMElement.querySelector('#albumNameFilter animate').beginElement();
 
@@ -474,6 +475,7 @@ setup(){
         });
 
     });
+    */
     that.spawnPaths();
 }
 
