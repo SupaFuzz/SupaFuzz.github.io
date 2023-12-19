@@ -70,9 +70,9 @@ get html(){
                  -->
             </defs>
 
-            <!-- the grid
             ${this.getGrid(200, 5)}
-            -->
+
+            <!-- the grid
             <rect
                 x="${(window.innerWidth/-2)}"
                 y="${(window.innerHeight/-2)}"
@@ -80,6 +80,7 @@ get html(){
                 height="${(window.innerHeight)}"
                 fill="url('#myGradient')"
             />
+            -->
 
             <g id="liminalPaths"></g>
 
@@ -148,6 +149,7 @@ get html(){
                  inkscape:groupmode="layer"
                  id="layer1"
                  transform="translate(-50.648769,-98.496046)">
+         <!--
                 <g
                    transform="matrix(0.1908652,0,0,0.1908652,226.67261,103.83534)"
                    style="font-style:normal;font-weight:normal;font-size:75.42089844px;line-height:1.25;font-family:sans-serif;letter-spacing:0px;word-spacing:0px;fill:#000000;fill-opacity:1;stroke:none;stroke-width:1.01010001"
@@ -214,6 +216,7 @@ get html(){
                      style="font-style:normal;font-variant:normal;font-weight:normal;font-stretch:normal;font-family:Comfortaa;-inkscape-font-specification:Comfortaa;stroke-width:1.01010001"
                      d="m -387.05643,32.437978 q -7.99462,0 -14.70708,-4.072728 -6.71246,-4.072729 -10.70977,-11.011451 -3.92188,-6.938723 -3.92188,-15.1596011 0,-8.145457 3.92188,-15.0841799 3.92189,-6.938722 10.63435,-11.011451 6.71246,-4.072728 14.7825,-4.072728 5.4303,0 9.88013,1.583838 4.44984,1.583839 8.59799,5.053201 0.82963,0.603367 0.82963,1.73468 0,0.603367 -0.30169,1.131314 -0.30168,0.452525 -0.82963,0.678788 -0.15084,0.527946 -0.67878,0.82963 -0.52795,0.301683 -1.13132,0.301683 -1.13131,0 -1.88552,-0.678788 -2.94142,-2.639731 -6.41078,-3.846466 -3.46936,-1.206734 -8.07003,-1.206734 -6.33536,0 -11.76566,3.39394 -5.43031,3.31852 -8.67341,8.975087 -3.16767,5.6565678 -3.16767,12.2181859 0,6.71246 3.16767,12.3690271 3.16768,5.656568 8.59799,8.975087 5.4303,3.31852 11.84108,3.31852 8.22087,0 14.85791,-5.279463 0.82963,-0.603367 1.65926,-0.603367 1.13132,0 1.96095,0.82963 0.82963,0.754209 0.82963,2.036364 0,1.206734 -0.82963,2.111785 -7.08957,6.486197 -18.47812,6.486197 z" />
                 </g>
+            -->
               </g>
             </svg>
 
@@ -387,7 +390,7 @@ get html(){
     get the markup to render a noice grid yo
 */
 getGrid(gridSpacing, subDivide){
-    let tmpHtml = ['<g class="bkndGrid" opacity="0">'];
+    let tmpHtml = ['<g class="bkndGrid" opacity=".02">'];
     let cols = Math.floor(window.innerWidth / gridSpacing);
     let rows = Math.floor(window.innerHeight / gridSpacing);
 
